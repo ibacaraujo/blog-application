@@ -33,6 +33,7 @@ def register():
         cur.execute("INSERT INTO user(name, email, age, password) VALUES(%s, %s, %s, %s)",
             (name, age, age, password))
         mysql.connection.commit()
+        return redirect(url_for('index'))
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
