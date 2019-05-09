@@ -53,33 +53,34 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('/static/post/img/post-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <form>
-              <h1><input type="text" id="title" name="title" placeholder="Title" /></h1>
-              <h2 class="subheading"><input type="text" id="subtitle" name="subtitle" placeholder="Subtitle" /></h2>
-              <span class="meta">Posted by <input type="text" id="author" name="author" placeholder="Author" /></span>
-            </form>
+  <form method="POST" class="new-post-form" id="new-post-form">
+    <header class="masthead" style="background-image: url('/static/post/img/post-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+                <h1><input type="text" id="title" name="title" placeholder="Title" /></h1>
+                <h2 class="subheading"><input type="text" id="subtitle" name="subtitle" placeholder="Subtitle" /></h2>
+                <span class="meta">Posted by <input type="text" id="author" name="author" placeholder="Author" /></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <textarea id="body" name="body" placeholder="Write something you learned to deep your understanding." style="height:800px; width:800px"></textarea>
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <textarea id="body" name="body" placeholder="Write something you learned to deep your understanding." style="height:800px; width:800px"></textarea>
+          </div>
         </div>
       </div>
-    </div>
-  </article>
+    </article>
+    <input type="submit" name="signup" id="signup" class="form-submit" value="Post!" style="display:block;margin-right:auto;margin-left:auto" />
+  </form>
 
   <hr>
 

@@ -63,8 +63,18 @@ def login():
 def post():
     return render_template('post.html')
 
-@app.route('/newpost')
+@app.route('/newpost', methods=['GET', 'POST'])
 def new_post():
+    if request.method == 'POST':
+        form = request.form
+        title = form['title']
+        subtitle = form['subtitle']
+        author = form['author']
+        body = form['body']
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO post(title, subtitle, author, body) VALUES(%s, %s, %s, %s)", 
+            (title, subtitle, author, body))
+        mysql.connection.commit()
     return render_template('new_post.html')
 
 if __name__ == '__main__':
