@@ -84,5 +84,9 @@ def new_post():
         mysql.connection.commit()
     return render_template('new_post.html')
 
+@app.route('/edit_post', methods=['GET', 'POST'])
+def edit_post():
+    return render_template('edit_post.html')
+
 if __name__ == '__main__':
     app.run()
