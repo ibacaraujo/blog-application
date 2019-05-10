@@ -19,7 +19,11 @@ app.config['SECRET_KEY'] = os.urandom(24)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    cur = mysql.connection.cursor()
+    result_value = cur.execute("SELECT * FROM post")
+    if result_value > 0:
+        posts = cur.fetchall()
+        return render_template('index.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -59,9 +63,12 @@ def login():
             error = "Invalid Credential."
     return render_template('login.html', error=error)
 
-@app.route('/post')
-def post():
-    return render_template('post.html')
+#/<subtitle>/<author>/<body>
+#subtitle, author, body
+#subtitle=subtitle, author=autor, body=body
+@app.route('/post/<title>/<subtitle>/<author>/<body>')
+def post(title, subtitle, author, body):
+    return render_template('post.html', title=title, subtitle=subtitle, author=author, body=body)
 
 @app.route('/newpost', methods=['GET', 'POST'])
 def new_post():
