@@ -84,9 +84,30 @@ def new_post():
         mysql.connection.commit()
     return render_template('new_post.html')
 
-@app.route('/edit_post', methods=['GET', 'POST'])
-def edit_post():
-    return render_template('edit_post.html')
+@app.route('/edit_post/<title>/<subtitle>/<author>/<body>', methods=['GET', 'POST'])
+def edit_post(title, subtitle, author, body):
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        result = cur.execute("SELECT * FROM post WHERE title = %s", (title,))
+        post = cur.fetchone()
+        post_title = post[0]
+        form = request.form
+        edit_title = form['title']
+        if edit_title == '':
+            edit_title = title
+        edit_subtitle = form['subtitle']
+        if edit_subtitle == '':
+            edit_subtitle = subtitle
+        edit_author = form['author']
+        if edit_author == '':
+            edit_author = author
+        edit_body = form['body']
+        if edit_body == '':
+            edit_body = body
+        cur.execute("UPDATE post SET title = %s, subtitle = %s, author = %s, body = %s WHERE title = %s",
+            (edit_title, edit_subtitle, edit_author, edit_body, post_title))
+        mysql.connection.commit()
+    return render_template('edit_post.html', title=title, subtitle=subtitle, author=author, body=body)
 
 if __name__ == '__main__':
     app.run()

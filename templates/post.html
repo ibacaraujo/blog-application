@@ -62,7 +62,7 @@
             <h1>{{title}}</h1>
             <h2 class="subheading">{{subtitle}}</h2>
             <span class="meta">Posted by {{author}}</span>
-            <a href="/edit_post" style="color:white">Edit</a>
+            <a href="{{ url_for('edit_post', title=title, subtitle=subtitle, author=author, body=body)}}" style="color:white">Edit</a>
             <a href="/del_post" style="color:white">Delete</a>
           </div>
         </div>
