@@ -109,5 +109,14 @@ def edit_post(title, subtitle, author, body):
         mysql.connection.commit()
     return render_template('edit_post.html', title=title, subtitle=subtitle, author=author, body=body)
 
+@app.route('/del_post/<title>', methods=['GET', 'POST'])
+def del_post(title):
+    if request.method == 'POST':
+        cur = mysql.connection.cursor()
+        cur.execute("DELETE FROM post WHERE title = %s", (title,))
+        mysql.connection.commit()
+        return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run()
